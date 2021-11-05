@@ -26,15 +26,15 @@ public class ClientesAPI {
 		@Autowired
 		private ClientesRepository clientesRepository;
 		
-		@PostMapping ("/crear")
+		@PostMapping ("/crear/clientes")
 		public void agregarCliente(@RequestBody Clientes cliente) {
 			clientesRepository.save(cliente);
 		}
-		@GetMapping("/listar")
+		@GetMapping("/listar/clientes")
 		public List<Clientes> findAll(){
 			 return clientesRepository.findAll();
 		}
-		@GetMapping("/buscar/{cedula}")
+		@GetMapping("/buscar/clientes/{cedula}")
 		public Clientes findById(@PathVariable String cedula) {
 			return clientesRepository.findById(cedula).get();
 		/*@GetMapping("/buscar/{codigo_producto}")
@@ -42,12 +42,12 @@ public class ClientesAPI {
 				return productosDAO.findById(codigo_producto);	*/	
 			
 		}
-		@DeleteMapping("/borrar/{cedula}")
+		@DeleteMapping("/borrar/clientes/{cedula}")
 		public void deleteById(@PathVariable String cedula) {
 			clientesRepository.deleteById(cedula);
 			
 		}
-		@PutMapping ("/actualizar")
+		@PutMapping ("/actualizar/clientes")
 		public void update (@RequestBody Clientes cliente) {
 			clientesRepository.save(cliente);
 			
