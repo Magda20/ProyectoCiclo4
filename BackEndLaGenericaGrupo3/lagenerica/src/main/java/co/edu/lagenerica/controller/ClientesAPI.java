@@ -28,7 +28,8 @@ public class ClientesAPI {
 		
 		@PostMapping ("/crear")
 		public void agregarCliente(@RequestBody Clientes cliente) {
-			clientesRepository.save(cliente);	
+			clientesRepository.save(cliente);
+			System.out.println("hola");
 		}
 		@GetMapping("/listar")
 		public List<Clientes> findAll(){
