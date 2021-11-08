@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,36 +17,37 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.lagenerica.repository.*;
 import co.edu.lagenerica.model.*;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("productos")
-public class ProductosAPI {
+@RequestMapping("/api")
+public class ProductoAPI {
 	
 	@Autowired
-	private ProductosRepository productosDAO;
+	private ProductoRepository productosDAO;
 	
-	@PostMapping("/crear")
-	public void registrarProductos(@RequestBody Productos productos) {
-		productosDAO.save(productos);
+	@PostMapping("/productos")
+	public void crearProducto(@RequestBody Producto producto) {
+		productosDAO.save(producto);
 	}
 
-	@GetMapping("/listar")
-	public ArrayList<Productos> listar(){
-		return (ArrayList<Productos>) productosDAO.findAll();		
+	@GetMapping("/productos")
+	public ArrayList<Producto> obtenerTodosProductos(){
+		return (ArrayList<Producto>) productosDAO.findAll();		
 	}
 
-	@GetMapping("/buscar/{codigo_producto}")
-	public Optional<Productos> buscar(@PathVariable ("codigo_producto") long codigo_producto){
+	@GetMapping("/productos/{codigo_producto}")
+	public Optional<Producto> obtenerProductoPorId(@PathVariable ("codigo_producto") long codigo_producto){
 		return productosDAO.findById(codigo_producto);	
 	}
 	
-	@DeleteMapping("/eliminar/{codigo_producto}")
-	public void eliminarProductos(@PathVariable("codigo_producto") long codigo_producto) {
+	@DeleteMapping("/productos/{codigo_producto}")
+	public void eliminarProducto(@PathVariable("codigo_producto") long codigo_producto) {
 		productosDAO.deleteById(codigo_producto);
 	}
 		
-	@PutMapping("/actualizar")
-	public void actualizar(@RequestBody Productos productos) {
-		productosDAO.save(productos);
+	@PutMapping("/productos")
+	public void actualizarProducto(@RequestBody Producto producto) {
+		productosDAO.save(producto);
 	}
 	
 	

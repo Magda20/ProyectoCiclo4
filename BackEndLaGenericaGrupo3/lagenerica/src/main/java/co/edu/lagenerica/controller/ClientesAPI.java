@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.lagenerica.model.Clientes;
-import co.edu.lagenerica.model.Productos;
+import co.edu.lagenerica.model.Producto;
 import co.edu.lagenerica.repository.ClientesRepository;
 
 

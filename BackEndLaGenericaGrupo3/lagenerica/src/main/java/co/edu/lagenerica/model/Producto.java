@@ -2,20 +2,28 @@ package co.edu.lagenerica.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import javax.validation.constraints.Size;
 
 
-@Document(collection = "productosDB")
-public class Productos {
+@Document(collection = "db_productos")
+public class Producto {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Size(min = 1, max = 20)
 	private long codigo_producto;
+
+	@Size(min = 1, max = 50)
+	private String nombre_producto;
+	
+	@Size(min = 1, max = 20)
+	private long nit_proveedor;
+	
+	private double precio_compra;
 	
 	private double iva_compra;
-	private long nit_proveedor;
-	private String nombre_producto;
-	private double precio_compra;
+	
 	private double precio_venta;
+	
 	
 	
 	public long getCodigo_producto() {
