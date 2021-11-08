@@ -47,7 +47,16 @@ public class ProductoAPI {
 		
 	@PutMapping("/productos")
 	public void actualizarProducto(@RequestBody Producto producto) {
-		productosDAO.save(producto);
+		Optional<Producto> productoViejoOpcional = productosDAO.findById(producto.getCodigo_producto());
+		if(productoViejoOpcional.isPresent()) {
+			Producto productoViejo = productoViejoOpcional.get();
+			productoViejo.setNombre_producto(producto.getNombre_producto());
+			productoViejo.setNit_proveedor(producto.getNit_proveedor());
+			productoViejo.setPrecio_compra(producto.getPrecio_compra());
+			productoViejo.setIva_compra(producto.getIva_compra());
+			productoViejo.setPrecio_venta(producto.getPrecio_venta());
+			productosDAO.save(productoViejo);
+		}
 	}
 	
 	
