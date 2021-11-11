@@ -7,15 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Clientes {
 	
 	@Id
-	private String cedula;
+	private int cedula;
 	private String Nombre;
 	private String Direccion; 
 	private String Telefono; 
 	private String Correo;
-	public String getCedula() {
+	public int getCedula() {
 		return cedula;
 	}
-	public void setCedula(String cedula) {
+	public void setCedula(int cedula) {
 		this.cedula = cedula;
 	}
 	public String getNombre() {
@@ -44,5 +44,4 @@ public class Clientes {
 	}
 	
 	
-
-}
+	}
