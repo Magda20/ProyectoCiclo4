@@ -7,6 +7,6 @@ import com.Grupo3LaGenerica.Clientes.Model.Clientes;
 
 
 @Repository
-public interface ClientesRepository  extends MongoRepository <Clientes, String>{
+public interface ClientesRepository  extends MongoRepository <Clientes, Integer>{
 
 }
