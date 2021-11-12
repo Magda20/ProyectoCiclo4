@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Grupo3LaGenerica.Clientes.Model.Clientes;
-import com.Grupo3LaGenerica.Clientes.Repository.ClientesRepository;
+import com.Grupo3LaGenerica.Clientes.Model.*;
+import com.Grupo3LaGenerica.Clientes.Repository.*;
 
 
 
@@ -34,12 +34,13 @@ public class ClientesAPI {
 		 return clientesRepository.findAll();
 	}
 	@GetMapping("/clientes/buscar/{cedula}")
-	public Clientes findById(@PathVariable String cedula) {
-		return clientesRepository.findById(cedula).get();
+	public Optional<Clientes> findById(@PathVariable ("cedula") Integer cedula) {
+		return clientesRepository.findById(cedula);
+			
 	
 	}
 	@DeleteMapping("/clientes/borrar/{cedula}")
-	public void deleteById(@PathVariable String cedula) {
+	public void borrar(@PathVariable ("cedula") Integer cedula) {
 		clientesRepository.deleteById(cedula);
 		
 	}
