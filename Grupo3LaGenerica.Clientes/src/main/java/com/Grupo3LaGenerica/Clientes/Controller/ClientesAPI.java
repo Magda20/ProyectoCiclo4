@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,31 +21,32 @@ import com.Grupo3LaGenerica.Clientes.Repository.*;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/clientes")
 public class ClientesAPI {
 	@Autowired
 	private ClientesRepository clientesRepository;
 	
-	@PostMapping ("/clientes/crear")
+	@PostMapping ("/crear")
 	public void agregarCliente(@RequestBody Clientes cliente) {
 		clientesRepository.save(cliente);	
 	}
-	@GetMapping("/clientes/listar")
+	@GetMapping("/listar")
 	public List<Clientes> findAll(){
 		 return clientesRepository.findAll();
 	}
-	@GetMapping("/clientes/buscar/{cedula}")
+	@GetMapping("/buscar/{cedula}")
 	public Optional<Clientes> findById(@PathVariable ("cedula") Integer cedula) {
 		return clientesRepository.findById(cedula);
 			
 	
 	}
-	@DeleteMapping("/clientes/borrar/{cedula}")
+	@DeleteMapping("/borrar/{cedula}")
 	public void borrar(@PathVariable ("cedula") Integer cedula) {
 		clientesRepository.deleteById(cedula);
 		
 	}
-	@PutMapping ("/clientes/actualizar")
+	@PutMapping ("/actualizar")
 	public void update (@RequestBody Clientes cliente) {
 		clientesRepository.save(cliente);
 		
